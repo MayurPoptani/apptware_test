@@ -16,7 +16,6 @@ class RecipeRepo {
       var snapshot = await FirebaseFirestore.instance.collection(collectionName).get(GetOptions(source: hasInternetConnection ? Source.server : Source.cache));
       return snapshot.docs.map((e) => RecipeModel.fromDocument(e)).toList();
     } on FirebaseException catch (e) {
-      // log("Code => ${e.}");
       log(e.toString());
       return Future.error(e);
     }
